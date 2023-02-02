@@ -1,0 +1,367 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DatosDelInteresado_Formulario" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="496,1699" sap2010:WorkflowViewState.IdRef="DatosDelInteresado_Formulario_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="DatosRepresentante" sap:VirtualizedContainerService.HintSize="476,1639" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Completando formulario: Datos del interesado...&quot;]" />
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'iexplore.exe Formulario'" sap:VirtualizedContainerService.HintSize="434,1416" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="74d64dbf2c767543143070f7c63920b8" Selector="&lt;html title='Formulario para dar de alta un registro electrónico' /&gt;">
+      <ui:WindowScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1270" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Default="RIBERA DEL LOIRA 46" Name="NombreVia" />
+              <Variable x:TypeArguments="x:String" Default="28042" Name="CodigoPostal" />
+              <Variable x:TypeArguments="x:String" Default="917220742" Name="Telefono" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item " sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Calle">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="64">
+                  <x:String>Alameda</x:String>
+                  <x:String>Avenida</x:String>
+                  <x:String>Avinguda</x:String>
+                  <x:String>Barrio</x:String>
+                  <x:String>Bulevar</x:String>
+                  <x:String>Calle</x:String>
+                  <x:String>Calleja</x:String>
+                  <x:String>Camí</x:String>
+                  <x:String>Camino</x:String>
+                  <x:String>Campo</x:String>
+                  <x:String>Carrer</x:String>
+                  <x:String>Carrera</x:String>
+                  <x:String>Carretera</x:String>
+                  <x:String>Cuesta</x:String>
+                  <x:String>Edificio</x:String>
+                  <x:String>Enparantza</x:String>
+                  <x:String>Estrada</x:String>
+                  <x:String>Glorieta</x:String>
+                  <x:String>Jardines</x:String>
+                  <x:String>Jardins</x:String>
+                  <x:String>Kalea</x:String>
+                  <x:String>Otros</x:String>
+                  <x:String>Parque</x:String>
+                  <x:String>Pasaje</x:String>
+                  <x:String>Paseo</x:String>
+                  <x:String>Passatge</x:String>
+                  <x:String>Passeig</x:String>
+                  <x:String>Plaça</x:String>
+                  <x:String>Placeta</x:String>
+                  <x:String>Plaza</x:String>
+                  <x:String>Plazuela</x:String>
+                  <x:String>Poblado</x:String>
+                  <x:String>Polígono</x:String>
+                  <x:String>Praza</x:String>
+                  <x:String>Rambla</x:String>
+                  <x:String>Ronda</x:String>
+                  <x:String>Rúa</x:String>
+                  <x:String>Sector</x:String>
+                  <x:String>Travesía</x:String>
+                  <x:String>Travessera</x:String>
+                  <x:String>Urbanización</x:String>
+                  <x:String>Via</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="03a51f486b3809ae621e5ada52495f1f" Selector="&lt;webctrl id='cdTipoVia' tag='SELECT' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  nomVia'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[NombreVia]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e6dd43ccc07f03843764d11d1f759982" Selector="&lt;webctrl id='nomVia' tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  codigoPostal'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[CodigoPostal]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="cdd2d6a53a39f783b08f959e81c22665" Selector="&lt;webctrl id='codigoPostal' tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  telContacto'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[Telefono]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="794685d226a68b831e25041e87f6c166" Selector="&lt;webctrl id='telContacto' tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  cdPais'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="España">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>España</x:String>
+                  <x:String>Afganistán</x:String>
+                  <x:String>Albania</x:String>
+                  <x:String>Alemania</x:String>
+                  <x:String>Andorra</x:String>
+                  <x:String>Angola</x:String>
+                  <x:String>Anguila</x:String>
+                  <x:String>Antártida</x:String>
+                  <x:String>Antigua y Barbuda</x:String>
+                  <x:String>Arabia Saudita</x:String>
+                  <x:String>Argelia</x:String>
+                  <x:String>Argentina</x:String>
+                  <x:String>Armenia</x:String>
+                  <x:String>Aruba</x:String>
+                  <x:String>Australia</x:String>
+                  <x:String>Austria</x:String>
+                  <x:String>Azerbaiyán</x:String>
+                  <x:String>Bahamas (las)</x:String>
+                  <x:String>Bangladés</x:String>
+                  <x:String>Barbados</x:String>
+                  <x:String>Baréin</x:String>
+                  <x:String>Bélgica</x:String>
+                  <x:String>Belice</x:String>
+                  <x:String>Benín</x:String>
+                  <x:String>Bermudas</x:String>
+                  <x:String>Bielorrusia</x:String>
+                  <x:String>Bolivia, Estado Plurinacional de</x:String>
+                  <x:String>Bonaire, San Eustaquio y Saba</x:String>
+                  <x:String>Bosnia y Herzegovina</x:String>
+                  <x:String>Botsuana</x:String>
+                  <x:String>Brasil</x:String>
+                  <x:String>Brunéi Darussalam</x:String>
+                  <x:String>Bulgaria</x:String>
+                  <x:String>Burkina Faso</x:String>
+                  <x:String>Burundi</x:String>
+                  <x:String>Bután</x:String>
+                  <x:String>Cabo Verde</x:String>
+                  <x:String>Camboya</x:String>
+                  <x:String>Camerún</x:String>
+                  <x:String>Canadá</x:String>
+                  <x:String>Catar</x:String>
+                  <x:String>Chad</x:String>
+                  <x:String>Chile</x:String>
+                  <x:String>China</x:String>
+                  <x:String>Chipre</x:String>
+                  <x:String>Colombia</x:String>
+                  <x:String>Comoras</x:String>
+                  <x:String>Congo</x:String>
+                  <x:String>Congo (la República Democrática del)</x:String>
+                  <x:String>Corea (la República de)</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="d1664c708b5ebedd823eab4488f16dfe" Selector="&lt;webctrl id='cdPais' tag='SELECT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  cdProvincia'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SelectItem_3" Item="MADRID">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>ALMERÍA</x:String>
+                  <x:String>ARABA/ÁLAVA</x:String>
+                  <x:String>ASTURIAS</x:String>
+                  <x:String>ÁVILA</x:String>
+                  <x:String>BADAJOZ</x:String>
+                  <x:String>BARCELONA</x:String>
+                  <x:String>BIZKAIA</x:String>
+                  <x:String>BURGOS</x:String>
+                  <x:String>CÁCERES</x:String>
+                  <x:String>CÁDIZ</x:String>
+                  <x:String>CANTABRIA</x:String>
+                  <x:String>CASTELLÓ/CASTELLÓN</x:String>
+                  <x:String>CEUTA</x:String>
+                  <x:String>CIUDAD REAL</x:String>
+                  <x:String>CÓRDOBA</x:String>
+                  <x:String>CORUÑA, A</x:String>
+                  <x:String>CUENCA</x:String>
+                  <x:String>GIPUZKOA</x:String>
+                  <x:String>GIRONA</x:String>
+                  <x:String>GRANADA</x:String>
+                  <x:String>GUADALAJARA</x:String>
+                  <x:String>HUELVA</x:String>
+                  <x:String>HUESCA</x:String>
+                  <x:String>ILLES BALEARS</x:String>
+                  <x:String>JAÉN</x:String>
+                  <x:String>LEÓN</x:String>
+                  <x:String>LLEIDA</x:String>
+                  <x:String>LUGO</x:String>
+                  <x:String>MADRID</x:String>
+                  <x:String>MÁLAGA</x:String>
+                  <x:String>MELILLA</x:String>
+                  <x:String>MURCIA</x:String>
+                  <x:String>NAVARRA</x:String>
+                  <x:String>OURENSE</x:String>
+                  <x:String>PALENCIA</x:String>
+                  <x:String>PALMAS, LAS</x:String>
+                  <x:String>PONTEVEDRA</x:String>
+                  <x:String>RIOJA, LA</x:String>
+                  <x:String>SALAMANCA</x:String>
+                  <x:String>SANTA CRUZ DE TENERIFE</x:String>
+                  <x:String>SEGOVIA</x:String>
+                  <x:String>SEVILLA</x:String>
+                  <x:String>SORIA</x:String>
+                  <x:String>TARRAGONA</x:String>
+                  <x:String>TERUEL</x:String>
+                  <x:String>TOLEDO</x:String>
+                  <x:String>VALÈNCIA/VALENCIA</x:String>
+                  <x:String>VALLADOLID</x:String>
+                  <x:String>ZAMORA</x:String>
+                  <x:String>ZARAGOZA</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="fa43836c64fb6a974b3b28fcae4d979e" Selector="&lt;webctrl id='cdProvincia' tag='SELECT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+            <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  cdLocalidad'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="Madrid">
+              <ui:SelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>Estremera</x:String>
+                  <x:String>Fresnedillas de la Oliva</x:String>
+                  <x:String>Fresno de Torote</x:String>
+                  <x:String>Fuenlabrada</x:String>
+                  <x:String>Fuente el Saz de Jarama</x:String>
+                  <x:String>Fuentidueña de Tajo</x:String>
+                  <x:String>Galapagar</x:String>
+                  <x:String>Garganta de los Montes</x:String>
+                  <x:String>Gargantilla del Lozoya y Pinilla de Buitrago</x:String>
+                  <x:String>Gascones</x:String>
+                  <x:String>Getafe</x:String>
+                  <x:String>Griñón</x:String>
+                  <x:String>Guadalix de la Sierra</x:String>
+                  <x:String>Guadarrama</x:String>
+                  <x:String>Hiruela, La</x:String>
+                  <x:String>Horcajo de la Sierra-Aoslos</x:String>
+                  <x:String>Horcajuelo de la Sierra</x:String>
+                  <x:String>Hoyo de Manzanares</x:String>
+                  <x:String>Humanes de Madrid</x:String>
+                  <x:String>Leganés</x:String>
+                  <x:String>Loeches</x:String>
+                  <x:String>Lozoya</x:String>
+                  <x:String>Lozoyuela-Navas-Sieteiglesias</x:String>
+                  <x:String>Madarcos</x:String>
+                  <x:String>Madrid</x:String>
+                  <x:String>Majadahonda</x:String>
+                  <x:String>Manzanares el Real</x:String>
+                  <x:String>Meco</x:String>
+                  <x:String>Mejorada del Campo</x:String>
+                  <x:String>Miraflores de la Sierra</x:String>
+                  <x:String>Molar, El</x:String>
+                  <x:String>Molinos, Los</x:String>
+                  <x:String>Montejo de la Sierra</x:String>
+                  <x:String>Moraleja de Enmedio</x:String>
+                  <x:String>Moralzarzal</x:String>
+                  <x:String>Morata de Tajuña</x:String>
+                  <x:String>Móstoles</x:String>
+                  <x:String>Navacerrada</x:String>
+                  <x:String>Navalafuente</x:String>
+                  <x:String>Navalagamella</x:String>
+                  <x:String>Navalcarnero</x:String>
+                  <x:String>Navarredonda y San Mamés</x:String>
+                  <x:String>Navas del Rey</x:String>
+                  <x:String>Nuevo Baztán</x:String>
+                  <x:String>Olmeda de las Fuentes</x:String>
+                  <x:String>Orusco de Tajuña</x:String>
+                  <x:String>Paracuellos de Jarama</x:String>
+                  <x:String>Parla</x:String>
+                  <x:String>Patones</x:String>
+                  <x:String>Pedrezuela</x:String>
+                </scg:List>
+              </ui:SelectItem.Items>
+              <ui:SelectItem.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="fed37c207b71438845471402ceb9fbb8" Selector="&lt;webctrl id='cdLocalidad' tag='SELECT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SelectItem.Target>
+            </ui:SelectItem>
+          </Sequence>
+        </ActivityAction>
+      </ui:WindowScope.Body>
+    </ui:WindowScope>
+  </Sequence>
+</Activity>

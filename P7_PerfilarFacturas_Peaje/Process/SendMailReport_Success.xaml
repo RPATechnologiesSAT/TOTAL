@@ -1,0 +1,103 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendMailReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_DTReporte" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_userSMTPMail" Type="InArgument(x:String)" />
+    <x:Property Name="in_passSMTPMail" Type="InArgument(ss:SecureString)" />
+  </x:Members>
+  <this:SendMailReport.in_userSMTPMail>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMailReport.in_userSMTPMail>
+  <this:SendMailReport.in_passSMTPMail>
+    <InArgument x:TypeArguments="ss:SecureString" />
+  </this:SendMailReport.in_passSMTPMail>
+  <sap:VirtualizedContainerService.HintSize>396,1035</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="16">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Send Report_Success" sap:VirtualizedContainerService.HintSize="376,975" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strDTReporte" />
+      <Variable x:TypeArguments="x:String" Name="StrBodyHtml" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Envío reporte resultados&quot;]" />
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="out_HtmlMailBody = &quot;&lt;table border=1&gt;&quot;;&#xA;// Add your header columns here in series&#xA;out_HtmlMailBody = out_HtmlMailBody +&quot;&lt;tr bgcolor='#33C4FF'&gt;&quot; + &quot;&lt;td&gt;Factura&lt;/td&gt;&quot; + &quot;&lt;td&gt;Codigo&lt;/td&gt;&quot; + &quot;&lt;td&gt;Unidad Programacion&lt;/td&gt;&quot; + &quot;&lt;td&gt;Resultado&lt;/td&gt;&quot; + &quot;&lt;td&gt;Mensaje de ejecucion&lt;/td&gt;&quot;+ &quot;&lt;/tr&gt;&quot;;&#xA;foreach(DataRow row in in_DtFilteredData.Rows)&#xA;{&#xA; &#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;tr&gt;&quot;;&#xA;&#x9;&#xA;&#x9;// Add your rows data in the same sequence as headers defined above&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;td&gt;&quot;+ row[&quot;Factura&quot;].ToString()+&quot;&lt;/td&gt;&quot;;&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;td&gt;&quot;+ row[&quot;Codigo&quot;].ToString()+&quot;&lt;/td&gt;&quot;;&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;td&gt;&quot;+ row[&quot;Unidad Programacion&quot;].ToString()+&quot;&lt;/td&gt;&quot;;&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;td&gt;&quot;+ row[&quot;Resultado&quot;].ToString()+&quot;&lt;/td&gt;&quot;;&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;td&gt;&quot;+ row[&quot;Mensaje de ejecucion&quot;].ToString()+&quot;&lt;/td&gt;&quot;;&#xA;&#x9;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;/tr&gt;&quot;;&#xA;}&#xA;out_HtmlMailBody = out_HtmlMailBody + &quot;&lt;/table&gt;&quot;;" DisplayName="Invoke code - Tabal resultados HTML" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtFilteredData">[in_DTReporte]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_HtmlMailBody">[strDTReporte]</OutArgument>
+      </ui:InvokeCode.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeCode>
+    <ui:ReadTextFile Content="[StrBodyHtml]" DisplayName="Read Text File" Encoding="UTF-8" FileName="Mail_HTML_Success.html" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ReadTextFile>
+    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[StrBodyHtml]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Format( StrBodyHtml, strDTReporte)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[StrBodyHtml]" DisplayName="Send SMTP Mail Message" Email="[in_userSMTPMail]" EnableSSL="True" From="rpatotal1@audinforsystem.es" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_4" IsBodyHtml="True" Name="Robot TotalEnergies" Password="nD9bI5rM" Port="[CInt(in_config(&quot;PerfilarFacturas_MailSMTPPort&quot;).ToString)]" SecureConnection="Auto" Server="[in_config(&quot;PerfilarFacturas_MailSMTPServer&quot;).ToString]" Subject="[in_config(&quot;PerfilarFacturas_MailAsunto&quot;).ToString+&quot; - Peaje&quot;]" To="[in_config(&quot;PerfilarFacturas_MailList&quot;)]">
+      <ui:SendMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendMail.Files>
+    </ui:SendMail>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[&quot;Reporte de ejecución completado - Fín de ejecución del proceso.&quot;]" />
+  </Sequence>
+</Activity>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>P1_ActualizarConsumosSIPS</id>
+    <version>1.0.16</version>
+    <authors>rpa2</authors>
+    <owners>rpa2</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Actualizar Consumos SIPS</description>
+    <releaseNotes>Nueva version con mensaje no controlado en SIGE</releaseNotes>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="UiPath.Credentials.Activities" version="[2.0.0]" />
+        <dependency id="UiPath.Database.Activities" version="[1.6.1]" />
+        <dependency id="UiPath.Excel.Activities" version="[2.7.2]" />
+        <dependency id="UiPath.Mail.Activities" version="[1.7.2]" />
+        <dependency id="UiPath.System.Activities" version="[19.10.1]" />
+        <dependency id="UiPath.UIAutomation.Activities" version="[19.11.3]" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

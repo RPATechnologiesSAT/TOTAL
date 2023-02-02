@@ -1,0 +1,1253 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Filtro" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Municipio" Type="InArgument(x:String)" />
+    <x:Property Name="in_Periodo" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_Validez" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Filtro.in_Periodo>
+    <InArgument x:TypeArguments="x:Int32" />
+  </this:Filtro.in_Periodo>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>935,3652</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Filtro_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="25">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Periodo a liquidar Mensual / Trimestral" DisplayName="Filtro" sap:VirtualizedContainerService.HintSize="915,3472" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="FechaDesde" />
+      <Variable x:TypeArguments="x:String" Name="FechaHasta" />
+      <Variable x:TypeArguments="x:String" Name="NameAtributo" />
+      <Variable x:TypeArguments="s:DateTime" Name="validez" />
+      <Variable x:TypeArguments="x:String" Name="municipioAbuscar" />
+      <Variable x:TypeArguments="x:String" Default="San Bartolomé" Name="testMunicipio" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="873,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[validez]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[System.DateTime.Parse(in_Validez)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[in_Periodo&lt;90]" sap:VirtualizedContainerService.HintSize="873,382" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Periodo mensual a procesar" sap:VirtualizedContainerService.HintSize="242,234" sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[validez.Month=1]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,252" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Fecha Desde" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[New DateTime(now.Year,1,1).ToString("dd/MM/yyyy")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="Fecha Hasta" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[New DateTime(now.Year,12,31).ToString("dd/MM/yyyy")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="611,400" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Fecha Desde " sap:VirtualizedContainerService.HintSize="569,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,validez.Month,1).toString("dd/MM/yyyy")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <If Condition="[Validez.Month =12]" sap:VirtualizedContainerService.HintSize="569,208" sap2010:WorkflowViewState.IdRef="If_4">
+                  <If.Then>
+                    <Assign DisplayName="Fecha Hasta" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_47">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year+1,1,1).addDays(-1).ToString("dd/MM/yyyy")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <Assign DisplayName="Fecha Hasta" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,validez.Month+1,1).addDays(-1).ToString("dd/MM/yyyy")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Filtro fechas" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="WindowScope_4" InformativeScreenshot="83c2274d5a0913d383689302c460de0d" Selector="&lt;wnd app='sige.desktop.exe' cls='HwndWrapper*' title='Impuesto Municipal' /&gt;">
+            <ui:WindowScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,365" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[&quot;Realizando filtro por rango de fechas...&quot;]" />
+                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribiendo fecha desde" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TypeInto_8" Text="[FechaDesde]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2fb5cd7ae587f9f40a420fc6640c59e7" Selector="&lt;ctrl automationid='AutoSelectTextBox' idx='1' role='editable text' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:TypeInto>
+                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribiendo fecha hasta" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TypeInto_9" Text="[FechaHasta]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="81eb1a42939667111d9f08b1696dd86d" Selector="&lt;ctrl automationid='AutoSelectTextBox' idx='2' role='editable text' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:TypeInto>
+                </Sequence>
+              </ActivityAction>
+            </ui:WindowScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:WindowScope>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Periodo trimestral a procesar." sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ui:GenericValue" Name="trimestreProcesar" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[validez.Month]" sap:VirtualizedContainerService.HintSize="496,204" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+            <Sequence x:Key="3" sap:VirtualizedContainerService.HintSize="304,246" sap2010:WorkflowViewState.IdRef="Sequence_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Fecha Desde : 01/01/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,1,1).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Fecha Hasta : 31/03/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,3,31).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence x:Key="6" sap:VirtualizedContainerService.HintSize="304,246" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Fecha Desde : 01/04/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,4,1).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Fecha Hasta : 30/06/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_42">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,6,30).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence x:Key="9" sap:VirtualizedContainerService.HintSize="304,246" sap2010:WorkflowViewState.IdRef="Sequence_28">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Fecha Desde : 01/07/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_43">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,7,1).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Fecha Hasta: 30/09/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_44">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,9,30).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <Sequence x:Key="12" sap:VirtualizedContainerService.HintSize="304,246" sap2010:WorkflowViewState.IdRef="Sequence_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Fecha Desde : 01/10/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_45">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaDesde]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,10,1).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Fecha Desde : 31/12/YY" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_46">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[FechaHasta]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[New DateTime(validez.Year,12,31).toString("dd/MM/yyyy")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </Switch>
+          <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Filtro fechas" sap:VirtualizedContainerService.HintSize="496,51" sap2010:WorkflowViewState.IdRef="WindowScope_3" InformativeScreenshot="83c2274d5a0913d383689302c460de0d" Selector="&lt;wnd app='sige.desktop.exe' cls='HwndWrapper*' title='Impuesto Municipal' /&gt;">
+            <ui:WindowScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,531" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Realizando filtro por rango de fechas...&quot;]" />
+                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'editable text'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_6" Text="[FechaDesde]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2fb5cd7ae587f9f40a420fc6640c59e7" Selector="&lt;ctrl automationid='AutoSelectTextBox' idx='1' role='editable text' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                  </ui:TypeInto>
+                  <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'editable text'" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_7" Text="[FechaHasta]">
+                    <ui:TypeInto.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="81eb1a42939667111d9f08b1696dd86d" Selector="&lt;ctrl automationid='AutoSelectTextBox' idx='2' role='editable text' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:TypeInto.Target>
+                  </ui:TypeInto>
+                </Sequence>
+              </ActivityAction>
+            </ui:WindowScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:WindowScope>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Se modifica la forma buscar el municipio ern SIGE, utilizando el buscador más preciso del CRM para evitar descargas de justificante erroneas con nombres compuesto de municipios que empiecen de la misma manera en la primera palabra" DisplayName="Filtro ampliado municipio" sap:VirtualizedContainerService.HintSize="873,2827" sap2010:WorkflowViewState.IdRef="WindowScope_5" InformativeScreenshot="83c2274d5a0913d383689302c460de0d" Selector="&lt;wnd app='sige.desktop.exe' cls='HwndWrapper*' title='Impuesto Municipal' /&gt;">
+      <ui:WindowScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="839,2639" sap2010:WorkflowViewState.IdRef="Sequence_49">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ui:GenericValue" Name="test" />
+              <Variable x:TypeArguments="x:Boolean" Name="popupFilter" />
+              <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="columna" />
+              <Variable x:TypeArguments="x:Boolean" Name="imagenPrueba" />
+              <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="children" />
+              <Variable x:TypeArguments="sd:DataTable" Name="dt" />
+              <Variable x:TypeArguments="x:Boolean" Name="ExistTabla" />
+              <Variable x:TypeArguments="x:Boolean" Name="ExistFiltro" />
+              <Variable x:TypeArguments="x:Boolean" Name="ExistImpuestoNoCargado" />
+              <Variable x:TypeArguments="ui:GenericValue" Name="TotalImpuesto" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="797,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Escribe impuesto" EmptyField="True" sap:VirtualizedContainerService.HintSize="797,51" sap2010:WorkflowViewState.IdRef="TypeInto_11" Text="1,5">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e952aa7d44844b18b2d89715bc884cca" Selector="&lt;ctrl automationid='AutoSelectTextBox' idx='3' role='editable text' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="797,51" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;Seleccionando municipio.&quot;]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <Assign sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[in_Municipio]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Municipio.Split("("c)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Debido a que el nombre del municipio de excel viene diferente(en algunos municipios) a lo que ofrece el buscador de SIGE, en este switch vamos a tener en cuenta todos aquellos municipios con esta casuistica para poner el municipio tal cual ofrece SIGE" DisplayName="Switch" Expression="[in_Municipio]" sap:VirtualizedContainerService.HintSize="797,319" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+              <Switch.Default>
+                <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="TypeInto_28" Text="[in_Municipio.Replace(&quot;_&quot;,&quot;/&quot;)+&quot;[k(enter)]&quot;]">
+                  <ui:TypeInto.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:TypeInto.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:TypeInto>
+              </Switch.Default>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence x:Key="Santa fe" sap:VirtualizedContainerService.HintSize="376,357" sap2010:WorkflowViewState.IdRef="Sequence_100">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Trace" Message="[municipioAbuscar+ &quot;no coincide con el buscador de SIGE. Modificando a Santa Fe&quot;]" />
+                <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_22" Text="[&quot;Santa Fe&quot; + &quot;[k(enter)]&quot;]">
+                  <ui:TypeInto.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:TypeInto.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:TypeInto>
+              </Sequence>
+              <Sequence x:Key="Almazora_almassora" sap:VirtualizedContainerService.HintSize="376,226" sap2010:WorkflowViewState.IdRef="Sequence_101">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_23" Text="[&quot;Almassora&quot; + &quot;[k(enter)]&quot;]">
+                  <ui:TypeInto.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:TypeInto.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:TypeInto>
+              </Sequence>
+              <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" x:Key="Oropesa del mar_oropesa" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_24" Text="[&quot;Oropesa del mar/Orpesa&quot; + &quot;[k(enter)]&quot;]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:TypeInto>
+              <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" x:Key="San fernando" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_25" Text="[&quot;San Fernando&quot; + &quot;[k(enter)]&quot;]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:TypeInto>
+              <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" x:Key="Torrent (valència_valencia)" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_26" Text="[&quot;Torrent&quot; + &quot;[k(enter)]&quot;]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:TypeInto>
+              <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBetweenKeys="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" x:Key="San bartolomé" Activate="True" DelayBefore="2000" DelayMS="3000" DisplayName="Escribe Municipio" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_27" Text="[&quot;San Bartolomé&quot; + &quot;[k(enter)]&quot;]">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="531dd61e42ee2d4d440e62b35a1b749c" Selector="&lt;ctrl automationid='TxtFindText' idx='3' role='editable text' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:TypeInto>
+            </Switch>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="797,51" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[municipioAbuscar]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <Sequence sap2010:Annotation.AnnotationText="Debido a que hay municipios que no son originales ya que comparten una parte del nombre: EJ('Colmenar' y 'Colmenar de Oreja'), se realiza click primero en la lupa para descartar este caso. Si no se dá, el flujo sigue por la búsqueda habitual" DisplayName="Comprobación municipio similar" sap:VirtualizedContainerService.HintSize="797,1414" sap2010:WorkflowViewState.IdRef="Sequence_99">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:Click SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="5000" DelayMS="5000" DisplayName="Click 'lupa'" sap:VirtualizedContainerService.HintSize="755,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="42676052cd38f0a432b68bf6da24957f" Selector="&lt;ctrl automationid='Image_7' idx='3' role='graphic' /&gt;&#xA;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:Click.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:Click>
+              <ui:ImageFound sap2010:Annotation.AnnotationText="Este popup solo saldra si la sintaxis de un municipio simple, coincide con la primera palabra de la sintaxis de un municipio compuesto.&#xA;&#xA;Ej: 'Colmenar', 'Colmenar de Oreja&#xA;'" DisplayName="Comprueba si ha saltado popup" Found="[popupFilter]" sap:VirtualizedContainerService.HintSize="755,208" sap2010:WorkflowViewState.IdRef="ImageFound_2">
+                <ui:ImageFound.Image>
+                  <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" Profile="Basic" TargetImageBase64="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" />
+                </ui:ImageFound.Image>
+                <ui:ImageFound.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:ImageFound.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ImageFound>
+              <If Condition="[popupFilter = True]" sap:VirtualizedContainerService.HintSize="755,886" sap2010:WorkflowViewState.IdRef="If_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap2010:Annotation.AnnotationText="Actuacion conforme se abre popup" sap:VirtualizedContainerService.HintSize="376,739" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[in_Municipio+&quot; con  parte del nombre similar a otros municipios&quot;]" />
+                    <Sequence sap:VirtualizedContainerService.HintSize="334,485" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If sap2010:Annotation.AnnotationText="Comprueba si el municipio lleva apostrofe " Condition="[in_Municipio.Contains(&quot;'&quot;)]" DisplayName="If - Municipio con apostrofe?" sap:VirtualizedContainerService.HintSize="200,93" sap2010:WorkflowViewState.IdRef="If_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="476,739" sap2010:WorkflowViewState.IdRef="Sequence_113">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_38" Level="Trace" Message="[&quot;Codificando municipio&quot;]" />
+                            <Assign sap2010:Annotation.AnnotationText="Municipio con apostrofe, en el cual esta activida lo codifica en UTF8 para poder seleccionarlo sin error en el siguiente paso" DisplayName="Codificamos municipio" sap:VirtualizedContainerService.HintSize="434,132" sap2010:WorkflowViewState.IdRef="Assign_65">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[system.Text.Encoding.ASCII.GetString(system.Text.Encoding.UTF8.GetBytes(in_Municipio))]</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'Sige.Desktop.exe'" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="WindowScope_10" InformativeScreenshot="b1e9cc8b1d370ddd71e5e33462bb2464" Selector="&lt;wnd app='sige.desktop.exe' cls='HwndWrapper*' /&gt;">
+                              <ui:WindowScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_112">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Click SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DelayBefore="2000" DelayMS="2000" DisplayName="Click Municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_32" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="bc317b9de6d8e8af610fd37a0e2400bb" Selector="&lt;ctrl name='{{municipioAbuscar}}' role='text' /&gt;&#xA;" WaitForReady="COMPLETE">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                        </ui:Target>
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:WindowScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:WindowScope>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                      <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Este switch principalmente no debería de entrar en este caso, ya que estos muncipios son originales, pero se replica como está en Tasa Municipal de Luz de cara al futuro, que haya municipios nuevos que si compartan parte del nombre en un futuro" DisplayName="Switch" Expression="[municipioAbuscar]" sap:VirtualizedContainerService.HintSize="200,198" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                        <Switch.Default>
+                          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Doble click municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_31" KeyModifiers="None" MouseButton="BTN_LEFT">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="b02470b5f1e5a9e680ba70260cb9e7ed" Selector="&lt;ctrl idx='1' name='{{municipioAbuscar}} ' role='text' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Click>
+                        </Switch.Default>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence x:Key="Santa Fe" sap:VirtualizedContainerService.HintSize="376,66" sap2010:WorkflowViewState.IdRef="Sequence_103">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Trace" Message="[municipioAbuscar+ &quot;no coincide con el buscador de SIGE. Modificando a Santa Fe&quot;]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_57">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">Santa Fe</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_102">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Seleccionar municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_26" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c4e3c2bee3c1d2b7d26fdec5367b688b" Selector="&lt;ctrl name='Santa Fe' role='text' /&gt;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Trace" Message="[municipioAbuscar+ &quot; seleccionado. Volviendo a su estado Santa fe &quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_58">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">Santa fe</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Warn" Message="[&quot;Error al seleccionar el Municipio de Santa fe&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                        <Sequence x:Key="Almassora" sap:VirtualizedContainerService.HintSize="480,708" sap2010:WorkflowViewState.IdRef="Sequence_105">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,656" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_104">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Seleccionar municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_27" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c4e3c2bee3c1d2b7d26fdec5367b688b" Selector="&lt;ctrl name='Santa Fe' role='text' /&gt;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Trace" Message="[municipioAbuscar+ &quot; seleccionado. Volviendo a su estado Almazora/Almassora&quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">Almazora_Almassora</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Warn" Message="[&quot;Error al seleccionar el Municipio Almassora&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                        <Sequence x:Key="San Fernando" sap:VirtualizedContainerService.HintSize="480,66" sap2010:WorkflowViewState.IdRef="Sequence_107">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Trace" Message="[municipioAbuscar+ &quot;no coincide con el buscador de SIGE. Modificando a San Fernando&quot;]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_60">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">San Fernando</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,656" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_106">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Seleccionar municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_28" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c4e3c2bee3c1d2b7d26fdec5367b688b" Selector="&lt;ctrl name='San Fernando' role='text' /&gt;&#xA;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Trace" Message="[municipioAbuscar+ &quot; seleccionado. Volviendo a su estado San fernando&quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">San fernando</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Warn" Message="[&quot;Error al seleccionar el Municipio de San fernando&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                        <Sequence x:Key="Torrent" sap:VirtualizedContainerService.HintSize="480,708" sap2010:WorkflowViewState.IdRef="Sequence_109">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,656" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_108">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Seleccionar municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_29" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c4e3c2bee3c1d2b7d26fdec5367b688b" Selector="&lt;ctrl name='Torrent' role='text' /&gt;&#xA;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Trace" Message="[municipioAbuscar+ &quot; seleccionado. Volviendo a su estado San fernando&quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">Torrent (valència_valencia)</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_7">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Warn" Message="[&quot;Error al seleccionar el Municipio de San fernando&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                        <Sequence x:Key="San Bartolomé" sap:VirtualizedContainerService.HintSize="480,979" sap2010:WorkflowViewState.IdRef="Sequence_111">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Trace" Message="[municipioAbuscar+ &quot;no coincide con el buscador de SIGE. Modificando a San Fernando&quot;]" />
+                          <Assign sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_63">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">San Bartolomé</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,656" sap2010:WorkflowViewState.IdRef="TryCatch_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_110">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Seleccionar municipio" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_30" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c4e3c2bee3c1d2b7d26fdec5367b688b" Selector="&lt;ctrl name='San Bartolomé' role='text' /&gt;&#xA;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:Click>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Trace" Message="[municipioAbuscar+ &quot; seleccionado. Volviendo a su estado San bartolomé&quot;]" />
+                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_64">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[municipioAbuscar]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">San fernando</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Warn" Message="[&quot;Error al seleccionar el Municipio de San Bartolomé&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                      </Switch>
+                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                    </Sequence>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Trace" Message="[&quot;El municipio no es similar&quot;]" />
+                </If.Else>
+              </If>
+            </Sequence>
+            <ui:Click DelayBefore="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="120000" DisplayName="Click 'buscar'" sap:VirtualizedContainerService.HintSize="797,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="26f6bf9456a39c6b6b60e818828375e2" Selector="&lt;ctrl automationid='btnBuscar' /&gt;&#xA;&lt;ctrl role='graphic' /&gt;&#xA;" TimeoutMS="180000">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Click>
+            <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="797,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="797,91" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;Búsqueda realizada con éxito&quot;]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:WindowScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WindowScope>
+  </Sequence>
+</Activity>
