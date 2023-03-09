@@ -83,7 +83,7 @@
         <InArgument x:TypeArguments="x:String">[String.Format( StrBodyHtml, in_Exception.Message)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[StrBodyHtml]" DisplayName="Send SMTP Mail Message" Email="[in_userSMTPMail]" EnableSSL="True" From="rpatotal1@audinforsystem.es" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_3" IsBodyHtml="True" Name="Robot TotalEnergies" Password="nD9bI5rM" Port="[CInt(in_config(&quot;PerfilarFacturas_MailSMTPPort&quot;).ToString)]" SecureConnection="Auto" Server="[in_config(&quot;PerfilarFacturas_MailSMTPServer&quot;).ToString]" Subject="[in_config(&quot;PerfilarFacturas_MailAsunto&quot;).ToString+&quot; - Peaje&quot;]" To="[in_config(&quot;PerfilarFacturas_MailList&quot;)]">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[StrBodyHtml]" DisplayName="Send SMTP Mail Message" Email="[in_userSMTPMail]" EnableSSL="True" From="rpatotal1@audinforsystem.es" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_4" IsBodyHtml="True" Name="Robot TotalEnergies" Password="nD9bI5rM" Port="[CInt(in_config(&quot;PerfilarFacturas_MailSMTPPort&quot;).ToString)]" SecureConnection="Auto" Server="[in_config(&quot;PerfilarFacturas_MailSMTPServer&quot;).ToString]" Subject="[in_config(&quot;PerfilarFacturas_MailAsunto&quot;).ToString+&quot; - Ventas&quot;]" To="[in_config(&quot;PerfilarFacturas_MailList&quot;)]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
           <InArgument x:TypeArguments="x:String">[in_FilePath]</InArgument>

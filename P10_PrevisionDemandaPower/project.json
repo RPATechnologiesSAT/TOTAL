@@ -1,9 +1,8 @@
 {
-  "name": "P7_PerfilarFacturas_Peaje",
-  "description": "Proceso 7 - Perfilar Facturas Peaje",
+  "name": "P10_PrevisionDemandaPower",
+  "description": "Proceso para la ejecución del calculo de las previsiones de SIPS y CCH BT.",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.Database.Activities": "[1.6.1]",
     "UiPath.Excel.Activities": "[2.7.2]",
     "UiPath.Mail.Activities": "[1.7.2]",
     "UiPath.System.Activities": "[19.10.1]",
@@ -12,7 +11,7 @@
   "webServices": [],
   "schemaVersion": "4.0",
   "studioVersion": "19.10.5.0",
-  "projectVersion": "1.0.15",
+  "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
@@ -30,12 +29,7 @@
     "libraryOptions": {
       "includeOriginalXaml": false,
       "privateWorkflows": []
-    },
-    "fileInfos": []
-  },
-  "arguments": {
-    "input": [],
-    "output": []
+    }
   },
   "expressionLanguage": "VisualBasic"
 }

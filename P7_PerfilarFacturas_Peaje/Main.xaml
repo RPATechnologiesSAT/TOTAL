@@ -44,6 +44,8 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Perfilado Facturas Peaje" sap:VirtualizedContainerService.HintSize="634,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -88,10 +90,10 @@
           </ui:InvokeWorkflowFile>
         </TryCatch.Try>
         <TryCatch.Catches>
-          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,434" sap2010:WorkflowViewState.IdRef="Catch`1_9">
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_9">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -99,14 +101,14 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Error envio notificación final" sap:VirtualizedContainerService.HintSize="376,365" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="Error envio notificación final" sap:VirtualizedContainerService.HintSize="480,601" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[&quot;Error envío notificación Reporte final&quot;]" />
-                <TryCatch DisplayName="Try TakeScreenshot" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_26">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[&quot;Error envío notificación Reporte final&quot;]" />
+                <TryCatch DisplayName="Try TakeScreenshot" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="TryCatch_26">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -138,7 +140,7 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <TryCatch DisplayName="Try Send Mail Error" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_27">
+                <TryCatch DisplayName="Try Send Mail Error" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="TryCatch_27">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -192,11 +194,14 @@
           <av:PointCollection x:Key="ConnectorLocation">300,407.5 300,437.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="PerfilarFacturasPeaje" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="TryCatch_8">
+      <TryCatch DisplayName="PerfilarFacturasPeaje" sap:VirtualizedContainerService.HintSize="438,314" sap2010:WorkflowViewState.IdRef="TryCatch_8">
         <TryCatch.Try>
           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="PerfilarFacturas" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\PerfilarFacturas.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTReporte">[DTReporte]</OutArgument>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_config">[config]</InArgument>
+              <InArgument x:TypeArguments="ss:SecureString" x:Key="in_passSP">[passSigePool]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_userSP">[userSigePool]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -217,14 +222,14 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Error perfilar facturas ventas" sap:VirtualizedContainerService.HintSize="480,899" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Error perfilar facturas peaje" sap:VirtualizedContainerService.HintSize="480,899" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Error: Ejecución 'Perfilar facturas Ventas' - &quot;+exception.Message]" />
-                <TryCatch DisplayName="Try TakeScreenshot" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_22">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Error: Ejecución 'Perfilar facturas Peaje' - &quot;+exception.Message]" />
+                <TryCatch DisplayName="Try TakeScreenshot" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="TryCatch_22">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -256,10 +261,10 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <TryCatch DisplayName="Try Send Mail Error" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="TryCatch_23">
+                <TryCatch DisplayName="Try Send Mail Error" sap:VirtualizedContainerService.HintSize="438,314" sap2010:WorkflowViewState.IdRef="TryCatch_23">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -296,7 +301,7 @@
                     </Catch>
                   </TryCatch.Catches>
                 </TryCatch>
-                <Rethrow sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Rethrow_4" />
+                <Rethrow sap:VirtualizedContainerService.HintSize="438,22" sap2010:WorkflowViewState.IdRef="Rethrow_4" />
               </Sequence>
             </ActivityAction>
           </Catch>
@@ -458,10 +463,10 @@
           </ui:InvokeWorkflowFile>
         </TryCatch.Try>
         <TryCatch.Catches>
-          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,496" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,21" sap2010:WorkflowViewState.IdRef="Catch`1_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -469,7 +474,7 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Error Navegación" sap:VirtualizedContainerService.HintSize="376,427" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Error Navegación" sap:VirtualizedContainerService.HintSize="480,899" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
